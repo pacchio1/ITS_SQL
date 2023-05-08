@@ -34,7 +34,7 @@ inner join Studente S on S.Matricola=P.Matricola
 group by S.Cognome,S.Nome;
 
 --Visualizzare l'elenco dei libri presi in prestito da un certo studente di cui conosco la matricola (dati dello studente, dati del libro, dati del prestito)
-declare @mat int set @mat=11226
+declare @mat int set @mat=11258
 select S.Matricola,S.Cognome,S.Nome,L.Titolo,P.DataPrestito,P.DataRestituzione
 from Studente S 
 	inner join Prestito P on S.Matricola=P.Matricola
@@ -46,11 +46,11 @@ select L.Titolo, count(p.IdLibro) as n_copie
 from  Prestito P 
 	inner join Libro L on L.Codice=P.IdLibro
 group by L.Titolo,p.IdLibro
-order by n_copie desc;
+order by n_copie desc,L.Titolo;
 
 --Elenco dei prestiti scaduti (scadenza a 15 giorni dal prestito)
 select S.Matricola,S.Cognome,S.Nome,L.Titolo,P.DataPrestito,P.DataRestituzione
 from Studente S 
 	inner join Prestito P on S.Matricola=P.Matricola
 	inner join Libro L on L.Codice=P.IdLibro
-where DataPrestito+DAY(15)>DataRestituzione;
+where DataPrestito+15>DataRestituzione or  DataPrestito+15>GETDATE();
