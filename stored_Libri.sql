@@ -48,7 +48,7 @@ BEGIN
     SELECT L.Titolo, COUNT(P.IdLibro) AS n_copie
     FROM Prestito P 
     RIGHT JOIN Libro L ON L.Codice = P.IdLibro
-    WHERE Collocazione= @collocazione
+    WHERE Collocazione like '%' + @collocazione + '%'
     GROUP BY L.Titolo, P.IdLibro
     ORDER BY n_copie DESC, L.Titolo
 END
@@ -63,7 +63,7 @@ BEGIN
     SELECT L.Titolo, COUNT(P.IdLibro) AS n_copie
     FROM Prestito P 
 		RIGHT JOIN Libro L ON L.Codice = P.IdLibro
-    WHERE L.Classificazione = @graduatoria
+    WHERE L.Classificazione = '%' + @graduatoria + '%'
     GROUP BY L.Titolo, P.IdLibro
     ORDER BY n_copie DESC, L.Titolo
 END
@@ -80,12 +80,12 @@ BEGIN
 FROM Prestito P 
 INNER JOIN Libro L ON L.Codice = P.IdLibro
 INNER JOIN Studente S ON S.Matricola = P.Matricola
-WHERE S.Matricola = @matricola AND L.Titolo = @titolo
+WHERE S.Matricola = @matricola AND L.Titolo like '%'+@titolo +'%'
 
 END
 GO
 
---6
+--6a
 CREATE PROCEDURE sp_info_prestiti_studente
     @matricola int
 AS 
@@ -97,6 +97,19 @@ BEGIN
     WHERE S.Matricola = @matricola
 END
 GO
+--6b Creare una stored procedure che restituisce: titolo del libro, autore, editore, anno di pubblicazione, la data del prestito, la data di scadenza 
+--e la data di  restituzione di un certo studente (matricola) dei libri che ha preso in prestito e che ha restituito in ritardo
+CREATE PROCEDURE sp_libri_restituiti_in_ritardo
+    @matricola int
+AS 
+BEGIN
+    SELECT L.Titolo, L.Autore, L.Editore, L.Anno, P.DataPrestito, DATEADD(day, 15, P.DataPrestito) AS DataScadenza, P.DataRestituzione
+ FROM Prestito P 
+    INNER JOIN Libro L ON L.Codice = P.IdLibro
+    WHERE P.Matricola = @matricola AND P.DataRestituzione IS NOT NULL AND P.DataRestituzione > DATEADD(day, 15, P.DataPrestito)
+END
+GO
+
 
 --7
 CREATE PROCEDURE sp_top_10_libri_piu_richiesti
@@ -145,4 +158,3 @@ BEGIN
     GROUP BY S.Matricola,S.Nome ,S.Cognome
     HAVING COUNT(P.Matricola) >= 3
 END
-GO
