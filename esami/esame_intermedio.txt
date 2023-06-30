@@ -1,0 +1,18 @@
+Testo
+
+Si consideri il backup PrestitiVideoteca di una WebApp che consente di gestire i prestiti dei film presenti in una biblioteca scolastica agli studenti.
+Si hanno le seguenti condizioni:
+Ogni studente può richiedere in prestito al più 3 film.
+La restituzione dei prestiti è da considerarsi entro 9 giorni.
+Si richiedono le seguenti queries:
+
+visualizzare il titolo e il regista dei film, la data del prestito di tutti i film attualmente in prestito
+visualizzare l'elenco degli studenti che hanno preso in prestito i film
+visualizzare l'elenco degli studenti con prestito scaduto
+visualizzare l'elenco dei film mai presi in prestito
+visualizzare l'elenco dei film presi in prestito dagli studenti di una certa classe
+visualizzare l'elenco dei film presi in prestito appartenenti ad un certo genere
+visualizzare l'elenco dei film che devono essere restituiti a meno di 2 giorni dalla scadenza del prestito
+visualizzare l'elenco degli studenti che hanno esaurito i prestiti
+visualizzare la classifica dei primi 10 film (titolo, regista, genere, numero di prestiti) più richiesti in ordine decrescente
+visualizzare la classifica degli studenti (nome, cognome, classe, numero di prestiti) che hanno preso più film in prestito in ordine decrescente

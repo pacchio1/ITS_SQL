@@ -1,0 +1,28 @@
+Operazioni da eseguire:
+
+creare il database BikeStores
+eseguire il file ... drop all objects (inserire il database da utilizzare)
+eseguire il file ... create object
+eseguire il file ... load data
+
+
+Eseguire le seguenti queries
+
+Selezionare i prodotti che hanno una certa marca
+Selezionare i prodotti che hanno in stocks almeno 20 pezzi
+Selezionare gli ordini gestiti da un certo componente dello staff (cognome)
+Selezionare il totale delle vendite del primo semestre 2016
+Selezionare i clienti che hanno acquistato prodotti di una certa categoria (nome)
+Creare le seguenti views
+Creare la vista vw_ProductionByQuantity con category_name, brand_name, product_name, model_year, list_price, quantity dello schema production. Interrogare la view richiedendo solo i dati con quantity strettamente inferiori a 25 unità
+Creare la vista vw_StoresByQuantity con brand_name, product_name, store_name, city, quantity. Interrogare la view per visualizzare i dati solo di una certa città
+Creare la vista vw_ProductsByCustomers con product_name, brand_name, category_name, quantity (quantità di acquisto), list_price (prezzo finale di acquisto), discount (sconto di acquisto), order_date, first_name, last_name, city. Interrogare la view vw_ProductsByCustomers per visualizzare i prodotti ordinati in una certa data  
+Creare le seguenti Stored Procedures
+Selezionare il prodotto, il prezzo, il magazzino e le quantità dei prodotti di una certa categoria
+Selezionare il nome, il prezzo, la categoria, la quantità e la marca dei prodotti che hanno in magazzino almeno n pezzi
+Selezionare il nome, il cognome, l'email e il telefono degli impiegati che lavorano in un certo negozio individuato tramite il nome
+Selezionare l'id, la data dell'ordine, la data di richiesta e di spedizione, lo stato degli ordini gestiti da un certo impiegato individuato tramite il cognome e il nome
+Visualizzare il numero di prodotti venduti in un certo negozio in un determinato anno e un certo impiegato
+Selezionare il nome e cognome del cliente, il modello, il prezzo e l'anno di produzione del prodotto, la data dell'ordine di tutti i clienti che hanno acquistato prodotti di una certa categoria individuata tramite il nome della categoria
+Definire un elenco per determinare quanti sono i prodotti in Pending, in Processing, in Rejected e in Completed  (es. 182 Pending, ... Processing, ... Rejected, ... Completed). Si consideri a tal proposito l'aggiunta di una tabella Order_Status con i riferimenti agli stati Pending=1, Processing=2, Rejected=3, Completed=4
+Per ogni stored procedures fornire degli esempi di interrogazione.
